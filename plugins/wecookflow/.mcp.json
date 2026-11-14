@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "wecookflow": {
+      "type": "http",
+      "url": "https://wecookflow.com/mcp",
+      "headers": { "Authorization": "Bearer ${user_config.token}" }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "wecookflow",
+  "owner": { "name": "WeCookFlow", "email": "hi@wecookflow.com" },
+  "metadata": { "description": "WeCookFlow — guest post prices for AI agents" },
+  "plugins": [
+    {
+      "name": "wecookflow",
+      "source": "./plugins/wecookflow",
+      "description": "Compare guest post prices across link-building marketplaces and find sites by niche, DR, traffic and budget (remote MCP server + skill)."
+    }
+  ]
+}
