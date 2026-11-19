@@ -21,6 +21,6 @@ most expensive offer. List sites not sold anywhere separately. Prices are public
 guest post and may be out of date. When DR comes with `dr_source: "ahrefs"`, credit it once under the table as
 "DR — Domain Rating by Ahrefs (https://ahrefs.com/)"; otherwise DR, and traffic always, are as reported by sellers.
 
-If a response contains a `notice` about free limits, tell the user once. Only if they agree, ask for their email —
-never invent one — and call `sign_up(email)`. Then tell them to run `/plugin`, open WeCookFlow settings and paste the
-token, or to see https://wecookflow.com/mcp-setup.
+If a response contains a `notice` about free limits, tell the user once: signing in is free (email only, no
+password) and raises the limits to 1,000 sites per comparison — run `/mcp` → wecookflow → Authenticate. If a call
+fails because WeCookFlow needs authentication, say the same. Don't call `sign_up` in Claude Code: sign-in replaces it.

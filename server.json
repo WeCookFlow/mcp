@@ -3,7 +3,7 @@
   "name": "com.wecookflow/mcp",
   "title": "WeCookFlow — guest post prices",
   "description": "Compare guest post prices for the same sites across marketplaces; find sites by niche, DR, budget.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "websiteUrl": "https://wecookflow.com/mcp-setup",
   "repository": {
     "url": "https://github.com/WeCookFlow/mcp",
@@ -12,15 +12,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://wecookflow.com/mcp",
-      "headers": [
-        {
-          "name": "Authorization",
-          "description": "Optional. Bearer ss_… — a free token from https://wecookflow.com/mcp-setup (raises limits from 50 to 1,000 sites per comparison). Works without it.",
-          "isRequired": false,
-          "isSecret": true
-        }
-      ]
+      "url": "https://wecookflow.com/mcp"
     }
   ]
 }

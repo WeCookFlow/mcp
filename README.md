@@ -10,7 +10,8 @@ This repository holds the public listing of the **remote MCP server** — there 
 https://wecookflow.com/mcp
 ```
 
-Transport: Streamable HTTP. No sign-in. Works without a token; a free token (by email) raises the limits.
+Transport: Streamable HTTP. Works right away with free limits; sign in with your email (OAuth, free, no password)
+to raise them — your client opens the WeCookFlow sign-in page.
 
 Step-by-step setup for every client: **https://wecookflow.com/mcp-setup**
 
@@ -29,10 +30,13 @@ or just the server:
 claude mcp add --transport http --scope user wecookflow https://wecookflow.com/mcp
 ```
 
-**Claude (claude.ai, Desktop)** — Settings → Connectors → Add → Add custom connector → URL
-`https://wecookflow.com/mcp`, authentication: No sign in.
+To sign in: `/mcp` → wecookflow → Authenticate (offered once a request goes over the free limits).
 
-**ChatGPT** — Plugins → + → Add custom MCP server → Server URL, authentication: No authentication.
+**Claude (claude.ai, Desktop)** — Settings → Connectors → Add → Add custom connector → URL
+`https://wecookflow.com/mcp`, authentication: **Sign in now** (Claude may detect “No sign-in” — change it) → Add →
+enter your email on the WeCookFlow page.
+
+**ChatGPT** — Plugins → + → Add custom MCP server → Server URL, authentication: OAuth.
 
 **Cursor, VS Code, Windsurf, Gemini CLI, Codex** — one-click links and configs on
 [wecookflow.com/mcp-setup](https://wecookflow.com/mcp-setup). A generic JSON config:
@@ -41,15 +45,15 @@ claude mcp add --transport http --scope user wecookflow https://wecookflow.com/m
 { "mcpServers": { "wecookflow": { "type": "http", "url": "https://wecookflow.com/mcp" } } }
 ```
 
-### Token
+### Sign-in
 
-Get a free token by email at [wecookflow.com/mcp-setup](https://wecookflow.com/mcp-setup) (no password), or let the
-agent call `sign_up` when you hit the free limit. Then either:
+Standard MCP OAuth: when a request goes over the free limits, the server answers `401` and your client offers to sign
+in — the WeCookFlow page asks only for your email (no password, no confirmation email). The same email as on the
+website or in the Chrome extension — the same account and limits.
 
-- use the personal URL `https://wecookflow.com/mcp?token=ss_…` (clients that only take a URL — Claude, ChatGPT), or
-- send the header `Authorization: Bearer ss_…` with the plain URL.
-
-In the Claude Code plugin, paste the token into the plugin's settings (`/plugin` → WeCookFlow → configure).
+Client can't sign in? Get a personal token by email at [wecookflow.com/mcp-setup](https://wecookflow.com/mcp-setup)
+(“Client can't sign in?”) or let the agent call `sign_up`, then use the URL `https://wecookflow.com/mcp?token=ss_…`
+or send `Authorization: Bearer ss_…`.
 
 ## Tools
 
@@ -58,7 +62,7 @@ In the Claude Code plugin, paste the token into the plugin's settings (`/plugin`
 | `compare_prices(domains, niche?)` | Prices for a list of sites or URLs (e.g. a competitor's backlinks) on every marketplace: best price and where, spread between the cheapest and the most expensive offer, DR and traffic. Sites not sold anywhere are listed separately. |
 | `search_sites(niche?, topic?, country?, language?, min_dr?, min_traffic?, min_price?, max_price?, sort?, offset?, limit?)` | Sites that sell guest posts, with the best public price, by filters; sort by DR × traffic (default), DR, traffic or price; page with `offset`. Large brands, universities, government sites and suspiciously cheap high-DR listings (user-generated posts) are left out. |
 | `list_channels()` | Marketplaces and catalogs whose prices are compared. |
-| `sign_up(email)` | A free personal token by email. |
+| `sign_up(email)` | A free personal token by email — for clients that can't sign in. |
 
 `niche`: `general` (default), `igaming`, `crypto`, `cbd`, `adult`. `compare_prices`, `search_sites` and
 `list_channels` are read-only.
@@ -71,7 +75,7 @@ Try asking:
 
 ## Limits
 
-| | Without a token | With a free token |
+| | Not signed in | Signed in (free) |
 |---|---|---|
 | `compare_prices` | 50 sites per call | 1,000 sites per call |
 | `search_sites` | the first 10 sites of a search | 50 per call, 1,000 a day |
@@ -86,7 +90,7 @@ reported by sellers and catalogs, not verified.
 
 ## Privacy
 
-The server receives the sites you compare, your search filters and, if you sign up, your email (the token is stored
+The server receives the sites you compare, your search filters and, if you sign in, your email (the token is stored
 only as a hash). No ads, no selling data. Full policy: [wecookflow.com/privacy](https://wecookflow.com/privacy).
 
 ## Also

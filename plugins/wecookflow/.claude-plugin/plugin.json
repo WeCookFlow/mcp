@@ -1,7 +1,7 @@
 {
   "name": "wecookflow",
   "displayName": "WeCookFlow — guest post prices",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Compare guest post prices for the same sites across link-building marketplaces and open catalogs; find sites by niche, country, DR, traffic and budget.",
   "author": { "name": "WeCookFlow", "email": "hi@wecookflow.com", "url": "https://wecookflow.com" },
   "homepage": "https://wecookflow.com/mcp-setup",
@@ -10,15 +10,5 @@
   "keywords": ["seo", "guest-posts", "link-building", "backlinks", "mcp"],
   "privacyPolicyUrl": "https://wecookflow.com/privacy",
   "documentationUrl": "https://wecookflow.com/mcp-setup",
-  "supportUrl": "https://wecookflow.com/feedback",
-  "userConfig": {
-    "token": {
-      "type": "string",
-      "title": "WeCookFlow token (optional)",
-      "description": "Leave empty to use the free limits (50 sites per comparison). Free token by email: https://wecookflow.com/mcp-setup — or ask Claude to call sign_up.",
-      "required": false,
-      "default": "",
-      "sensitive": true
-    }
-  }
+  "supportUrl": "https://wecookflow.com/feedback"
 }
