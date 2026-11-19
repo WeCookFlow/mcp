@@ -4,7 +4,7 @@
 Serpzilla, Adsy, Bazoom, Collaborator, GPosting, Vefogix, GuestPostLinks, Links as a Service — and finds sites by
 niche, country, language, DR, traffic and budget. The same site often costs 2–5× more in one place than in another.
 
-This repository holds the public listing of the **remote MCP server** — there is nothing to install or run:
+This repository holds the public listing of the **remote MCP server** — there is nothing to run:
 
 ```
 https://wecookflow.com/mcp
@@ -13,37 +13,64 @@ https://wecookflow.com/mcp
 Transport: Streamable HTTP. Works right away with free limits; sign in with your email (OAuth, free, no password)
 to raise them — your client opens the WeCookFlow sign-in page.
 
-Step-by-step setup for every client: **https://wecookflow.com/mcp-setup**
+## Install
 
-## Connect
+Two parts: the **MCP server** (the tools — required) and a small **skill** that tells the agent how to present prices
+(optional). Where you can, install the plugin — it brings both.
 
-**Claude Code** — as a plugin (MCP server + a skill with usage hints):
+| Client | How to install | Sign in |
+|---|---|---|
+| **Claude Code** (terminal, desktop, VS Code) | plugin, or just the server | `/mcp` → wecookflow → Authenticate |
+| **Claude Desktop, claude.ai** | plugin, or just the connector | **Sign in now** when adding |
+| **ChatGPT** | custom connector | authentication: OAuth |
+| **Cursor, VS Code, Windsurf, Gemini CLI, Codex** and others | the server URL in the MCP settings | when the client asks |
+
+Step-by-step setup with one-click links: **https://wecookflow.com/mcp-setup**
+
+### Claude Code
+
+Plugin (server + skill):
 
 ```
 /plugin marketplace add WeCookFlow/mcp
 /plugin install wecookflow@wecookflow
 ```
 
-or just the server:
+Or just the server:
 
 ```bash
 claude mcp add --transport http --scope user wecookflow https://wecookflow.com/mcp
 ```
 
-To sign in: `/mcp` → wecookflow → Authenticate (offered once a request goes over the free limits).
+Sign in: `/mcp` → wecookflow → **Authenticate** — offered once a request goes over the free limits.
 
-**Claude (claude.ai, Desktop)** — Settings → Connectors → Add → Add custom connector → URL
-`https://wecookflow.com/mcp`, authentication: **Sign in now** (Claude may detect “No sign-in” — change it) → Add →
-enter your email on the WeCookFlow page.
+### Claude Desktop and claude.ai
 
-**ChatGPT** — Plugins → + → Add custom MCP server → Server URL, authentication: OAuth.
+**Connector:** *Settings → Connectors → Add → Add custom connector*, URL `https://wecookflow.com/mcp`,
+authentication **Sign in now** (Claude may detect “No sign-in” — change it) → **Add** → enter your email on the
+WeCookFlow page.
 
-**Cursor, VS Code, Windsurf, Gemini CLI, Codex** — one-click links and configs on
-[wecookflow.com/mcp-setup](https://wecookflow.com/mcp-setup). A generic JSON config:
+**Plugin:** *Customize → Plugins → Add → Add marketplace*, paste `https://github.com/WeCookFlow/mcp` and add the
+`wecookflow` plugin, then open it → **Connectors** → connect `wecookflow` and sign in with your email.
+
+### ChatGPT
+
+*Plugins → + → Add custom MCP server* → Server URL `https://wecookflow.com/mcp`, authentication **OAuth** → sign in
+with your email. Custom MCP servers aren't available on every plan; in workspaces an admin may need to allow them.
+
+### Cursor, VS Code, Windsurf, Gemini CLI, Codex and others
+
+Add the server in the client's MCP settings — URL `https://wecookflow.com/mcp`, name `wecookflow`. A generic JSON
+config:
 
 ```json
 { "mcpServers": { "wecookflow": { "type": "http", "url": "https://wecookflow.com/mcp" } } }
 ```
+
+One-click links for Cursor and VS Code and configs for the others — on
+[wecookflow.com/mcp-setup](https://wecookflow.com/mcp-setup).
+
+> Connected the server by hand and then installed the plugin? Remove one of them so the tools don't show up twice.
 
 ### Sign-in
 
