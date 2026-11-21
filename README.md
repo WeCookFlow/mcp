@@ -1,3 +1,5 @@
+<img src="assets/icon-512.png" alt="WeCookFlow" width="96" align="right">
+
 # WeCookFlow MCP — guest post prices for AI agents
 
 **WeCookFlow** compares guest post prices for the same websites across link-building marketplaces and open catalogs —

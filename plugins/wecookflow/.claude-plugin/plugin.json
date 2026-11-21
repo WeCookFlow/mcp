@@ -8,6 +8,7 @@
   "repository": "https://github.com/WeCookFlow/mcp",
   "license": "MIT",
   "keywords": ["seo", "guest-posts", "link-building", "backlinks", "mcp"],
+  "icon": "./logo.png",
   "privacyPolicyUrl": "https://wecookflow.com/privacy",
   "documentationUrl": "https://wecookflow.com/mcp-setup",
   "supportUrl": "https://wecookflow.com/feedback"
