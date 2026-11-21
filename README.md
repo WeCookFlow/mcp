@@ -132,3 +132,5 @@ only as a hash). No ads, no selling data. Full policy: [wecookflow.com/privacy](
 
 [WeCookFlow](https://wecookflow.com). The server code is not open source; this repository contains the
 listing, the Claude Code plugin and the MCP registry metadata. MIT license applies to the files in this repository.
+Registry releases: bump `version` in `server.json` and push a matching `v<version>` tag — GitHub Actions
+publishes it (`.github/workflows/publish-registry.yml`).

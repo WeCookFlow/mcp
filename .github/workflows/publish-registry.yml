@@ -1,0 +1,49 @@
+# Publish server.json to the official MCP Registry (registry.modelcontextprotocol.io) as com.wecookflow/mcp.
+# Release: bump "version" in server.json, commit, then push a matching tag:  git tag v1.2.0 && git push origin v1.2.0
+# Auth: HTTP domain verification — wecookflow.com/.well-known/mcp-registry-auth serves the public key,
+# the private key (ed25519, hex) is the repository secret MCP_REGISTRY_PRIVATE_KEY.
+name: Publish to MCP Registry
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PUBLISHER_VERSION: "1.8.10"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tag matches server.json version
+        if: github.event_name == 'push'
+        run: |
+          version=$(jq -r .version server.json)
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::tag $GITHUB_REF_NAME != server.json version $version"; exit 1
+          fi
+
+      - name: Install mcp-publisher
+        run: |
+          base="https://github.com/modelcontextprotocol/registry/releases/download/v${PUBLISHER_VERSION}"
+          curl -fsSL -o mcp-publisher.tar.gz "$base/mcp-publisher_linux_amd64.tar.gz"
+          curl -fsSL -o checksums.txt "$base/registry_${PUBLISHER_VERSION}_checksums.txt"
+          echo "$(grep ' mcp-publisher_linux_amd64.tar.gz$' checksums.txt | cut -d' ' -f1)  mcp-publisher.tar.gz" | sha256sum -c -
+          tar xzf mcp-publisher.tar.gz mcp-publisher
+
+      - name: Validate
+        run: ./mcp-publisher validate server.json
+
+      - name: Login (HTTP, wecookflow.com)
+        env:
+          KEY: ${{ secrets.MCP_REGISTRY_PRIVATE_KEY }}
+        run: ./mcp-publisher login http --domain wecookflow.com --private-key "$KEY"
+
+      - name: Publish
+        run: ./mcp-publisher publish
