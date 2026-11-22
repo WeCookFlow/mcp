@@ -35,7 +35,7 @@ Plugin (server + skill):
 
 ```
 /plugin marketplace add WeCookFlow/mcp
-/plugin install wecookflow@wecookflow
+/plugin install guest-post-prices@wecookflow
 ```
 
 Or just the server:
@@ -53,7 +53,7 @@ authentication **Sign in now** (Claude may detect “No sign-in” — change it
 WeCookFlow page.
 
 **Plugin:** *Customize → Plugins → Add → Add marketplace*, paste `https://github.com/WeCookFlow/mcp` and add the
-`wecookflow` plugin, then open it → **Connectors** → connect `wecookflow` and sign in with your email.
+`guest-post-prices` plugin, then open it → **Connectors** → connect `wecookflow` and sign in with your email.
 
 ### ChatGPT
 

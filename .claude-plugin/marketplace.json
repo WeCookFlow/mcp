@@ -4,8 +4,8 @@
   "metadata": { "description": "WeCookFlow — guest post prices for AI agents" },
   "plugins": [
     {
-      "name": "wecookflow",
-      "source": "./plugins/wecookflow",
+      "name": "guest-post-prices",
+      "source": "./plugins/guest-post-prices",
       "description": "Compare guest post prices across link-building marketplaces and find sites by niche, DR, traffic and budget (remote MCP server + skill)."
     }
   ]
