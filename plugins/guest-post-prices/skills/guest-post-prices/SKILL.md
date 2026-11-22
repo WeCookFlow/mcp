@@ -41,3 +41,13 @@ If a response contains a `notice` about free limits, tell the user once: signing
 password) and raises the limits to 1,000 sites per comparison. In Claude Code: `/mcp` → wecookflow → Authenticate; in
 Claude Desktop or claude.ai: Settings → Connectors → wecookflow → Connect. If a call fails because WeCookFlow needs
 authentication, say the same. Don't call `sign_up` where sign-in is available.
+
+If the user is signed in and a `notice` still says a limit was reached, or they need more than the limits allow,
+offer to ask for higher limits: with their consent call `contact` with `kind=more_limits`, a short message (what
+for, roughly how many sites) and their email — ask for it, never invent one. Feedback and feature requests go
+through `contact` too.
+
+If the user is a publisher or link seller who wants to list their sites, call `submit_sites` with their email,
+role (owner, reseller or agency) and either the sites with prices (domain, price, currency, type guest_post or
+link_insertion, niche prices if different) or a link to their price list. Show them what will be sent first. A
+person reviews it and replies by email. If the response has an `error`, fix that field and call again.

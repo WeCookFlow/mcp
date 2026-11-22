@@ -1,7 +1,7 @@
 {
   "name": "guest-post-prices",
   "displayName": "WeCookFlow — guest post prices",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Compare guest post prices for the same sites across link-building marketplaces and open catalogs; find sites by niche, country, DR, traffic and budget.",
   "author": { "name": "WeCookFlow", "email": "hi@wecookflow.com", "url": "https://wecookflow.com" },
   "homepage": "https://wecookflow.com/mcp-setup",

@@ -92,9 +92,11 @@ or send `Authorization: Bearer ss_…`.
 | `search_sites(niche?, topic?, country?, language?, min_dr?, min_traffic?, min_price?, max_price?, sort?, offset?, limit?)` | Sites that sell guest posts, with the best public price, by filters; sort by DR × traffic (default), DR, traffic or price; page with `offset`. Large brands, universities, government sites and suspiciously cheap high-DR listings (user-generated posts) are left out. |
 | `list_channels()` | Marketplaces and catalogs whose prices are compared. |
 | `sign_up(email)` | A free personal token by email — for clients that can't sign in. |
+| `contact(kind, message, email)` | Ask for higher limits (`kind=more_limits`), send feedback or a feature request. A person replies by email. |
+| `submit_sites(email, role, sites?, sheet_url?, payment?, terms?, messenger?, comment?)` | For publishers: submit your sites with prices (`sites: [{domain, price, currency?, type: guest_post\|link_insertion, niche_prices?, dofollow?, note?}]`) or a link to your price list — same as the form at [wecookflow.com/publishers](https://wecookflow.com/publishers). Reviewed by a person; nothing is published automatically. |
 
 `niche`: `general` (default), `igaming`, `crypto`, `cbd`, `adult`. `compare_prices`, `search_sites` and
-`list_channels` are read-only.
+`list_channels` are read-only; `sign_up`, `contact` and `submit_sites` only create a token or a message to the WeCookFlow team, and the agent calls them with your consent.
 
 Try asking:
 
